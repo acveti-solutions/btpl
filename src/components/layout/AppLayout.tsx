@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 
@@ -9,6 +10,14 @@ interface AppLayoutProps {
 }
 
 export function AppLayout({ children, role, onRoleSwitch }: AppLayoutProps) {
+  const navigate = useNavigate();
+
+  const handleSwitch = () => {
+    const newRole = role === "admin" ? "affiliate" : "admin";
+    onRoleSwitch(newRole);
+    navigate(`/${newRole}/dashboard`);
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -21,7 +30,7 @@ export function AppLayout({ children, role, onRoleSwitch }: AppLayoutProps) {
                 {role === "admin" ? "Admin Panel" : "Affiliate Dashboard"}
               </span>
               <button
-                onClick={() => onRoleSwitch(role === "admin" ? "affiliate" : "admin")}
+                onClick={handleSwitch}
                 className="text-xs px-3 py-1.5 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors"
               >
                 Switch to {role === "admin" ? "Affiliate" : "Admin"} View

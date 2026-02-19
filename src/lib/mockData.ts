@@ -53,6 +53,15 @@ export interface CommissionSlab {
   commissionPercent: number;
 }
 
+export interface CommissionPlan {
+  id: string;
+  name: string;
+  isDefault: boolean;
+  registrationBonusThreshold: number;
+  registrationBonusAmount: number;
+  commissionSlabs: CommissionSlab[];
+}
+
 export interface SystemSettings {
   registrationBonusThreshold: number;
   registrationBonusAmount: number;
@@ -60,17 +69,54 @@ export interface SystemSettings {
   commissionSlabs: CommissionSlab[];
 }
 
+export const commissionPlans: CommissionPlan[] = [
+  {
+    id: "plan-1",
+    name: "Standard Plan",
+    isDefault: true,
+    registrationBonusThreshold: 20000,
+    registrationBonusAmount: 500,
+    commissionSlabs: [
+      { id: "1", targetSales: 200000, commissionPercent: 2 },
+      { id: "2", targetSales: 500000, commissionPercent: 2.5 },
+      { id: "3", targetSales: 1000000, commissionPercent: 3 },
+      { id: "4", targetSales: 1500000, commissionPercent: 3.25 },
+      { id: "5", targetSales: 2000000, commissionPercent: 3.25 },
+    ],
+  },
+  {
+    id: "plan-2",
+    name: "Premium Plan",
+    isDefault: false,
+    registrationBonusThreshold: 15000,
+    registrationBonusAmount: 750,
+    commissionSlabs: [
+      { id: "6", targetSales: 150000, commissionPercent: 2.5 },
+      { id: "7", targetSales: 400000, commissionPercent: 3 },
+      { id: "8", targetSales: 800000, commissionPercent: 3.5 },
+      { id: "9", targetSales: 1500000, commissionPercent: 4 },
+    ],
+  },
+  {
+    id: "plan-3",
+    name: "Enterprise Plan",
+    isDefault: false,
+    registrationBonusThreshold: 10000,
+    registrationBonusAmount: 1000,
+    commissionSlabs: [
+      { id: "10", targetSales: 100000, commissionPercent: 3 },
+      { id: "11", targetSales: 300000, commissionPercent: 3.5 },
+      { id: "12", targetSales: 700000, commissionPercent: 4 },
+      { id: "13", targetSales: 1200000, commissionPercent: 4.5 },
+    ],
+  },
+];
+
 export const systemSettings: SystemSettings = {
   registrationBonusThreshold: 20000,
   registrationBonusAmount: 500,
   minimumWithdrawal: 5000,
-  commissionSlabs: [
-    { id: "1", targetSales: 200000, commissionPercent: 2 },
-    { id: "2", targetSales: 500000, commissionPercent: 2.5 },
-    { id: "3", targetSales: 1000000, commissionPercent: 3 },
-    { id: "4", targetSales: 1500000, commissionPercent: 3.25 },
-    { id: "5", targetSales: 2000000, commissionPercent: 3.25 },
-  ],
+  commissionSlabs: commissionPlans[0].commissionSlabs,
 };
 
 export const affiliates: Affiliate[] = [

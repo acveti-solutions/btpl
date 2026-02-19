@@ -1,7 +1,7 @@
 import { Users, UserCheck, IndianRupee, TrendingUp, Wallet, Clock } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { StatusBadge } from "@/components/StatusBadge";
-import { affiliates, formatCurrency } from "@/lib/mockData";
+import { affiliates, commissionPlans, formatCurrency } from "@/lib/mockData";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -53,20 +53,23 @@ export default function AdminDashboard() {
                 <TableHead>Name</TableHead>
                 <TableHead>Sellers</TableHead>
                 <TableHead className="text-right">Total Earnings</TableHead>
-                <TableHead className="text-right">Wallet</TableHead>
+                <TableHead>Plans</TableHead>
                 <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {affiliates.map((a) => (
-                <TableRow key={a.id}>
-                  <TableCell className="font-medium">{a.name}</TableCell>
-                  <TableCell>{a.totalSellers} ({a.eligibleSellers} eligible)</TableCell>
-                  <TableCell className="text-right">{formatCurrency(a.totalEarnings)}</TableCell>
-                  <TableCell className="text-right">{formatCurrency(a.walletBalance)}</TableCell>
-                  <TableCell><StatusBadge status={a.status} /></TableCell>
-                </TableRow>
-              ))}
+              {affiliates.map((a) => {
+                const defaultPlan = commissionPlans.find(p => p.isDefault);
+                return (
+                  <TableRow key={a.id}>
+                    <TableCell className="font-medium">{a.name}</TableCell>
+                    <TableCell>{a.totalSellers} ({a.eligibleSellers} eligible)</TableCell>
+                    <TableCell className="text-right">{formatCurrency(a.totalEarnings)}</TableCell>
+                    <TableCell><span className="text-xs bg-muted px-2 py-1 rounded">{defaultPlan?.name || "—"}</span></TableCell>
+                    <TableCell><StatusBadge status={a.status} /></TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </div>

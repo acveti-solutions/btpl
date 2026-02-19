@@ -49,7 +49,7 @@ export default function AdminAffiliates() {
                 <TableCell className="font-medium">{a.name}</TableCell>
                 <TableCell className="text-muted-foreground">{a.email}</TableCell>
                 <TableCell><code className="text-xs bg-muted px-1.5 py-0.5 rounded">{a.referralCode}</code></TableCell>
-                <TableCell>{a.totalSellers}</TableCell>
+                <TableCell>{a.totalSellers} ({a.eligibleSellers} eligible)</TableCell>
                 <TableCell className="text-right">{formatCurrency(a.totalEarnings)}</TableCell>
                 <TableCell>
                   <Select value={planAssignments[a.id] || ""} onValueChange={(v) => handlePlanChange(a.id, v)}>

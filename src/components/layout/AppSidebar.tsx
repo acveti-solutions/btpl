@@ -39,7 +39,6 @@ const adminItems = [
   { title: "Affiliates", url: "/admin/affiliates", icon: UserCheck },
   { title: "Sellers", url: "/admin/sellers", icon: Users },
   { title: "Commission Plans", url: "/admin/commission-plans", icon: Layers },
-  { title: "Commission Settings", url: "/admin/commission-settings", icon: Settings },
   { title: "Payout Settings", url: "/admin/payout-settings", icon: CalendarClock },
   { title: "Withdrawals", url: "/admin/withdrawals", icon: Receipt },
   { title: "Fraud Monitor", url: "/admin/fraud", icon: AlertTriangle },

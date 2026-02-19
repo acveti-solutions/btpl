@@ -20,6 +20,8 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import AdminAffiliates from "./pages/admin/Affiliates";
 import AdminSellers from "./pages/admin/Sellers";
 import AdminCommissionSettings from "./pages/admin/CommissionSettings";
+import AdminCommissionPlans from "./pages/admin/CommissionPlans";
+import AdminPayoutSettings from "./pages/admin/PayoutSettings";
 import AdminWithdrawals from "./pages/admin/Withdrawals";
 import AdminFraud from "./pages/admin/Fraud";
 
@@ -59,6 +61,8 @@ const App = () => {
                   <Route path="affiliates" element={<AdminAffiliates />} />
                   <Route path="sellers" element={<AdminSellers />} />
                   <Route path="commission-settings" element={<AdminCommissionSettings />} />
+                  <Route path="commission-plans" element={<AdminCommissionPlans />} />
+                  <Route path="payout-settings" element={<AdminPayoutSettings />} />
                   <Route path="withdrawals" element={<AdminWithdrawals />} />
                   <Route path="fraud" element={<AdminFraud />} />
                   <Route path="*" element={<Navigate to="dashboard" replace />} />
